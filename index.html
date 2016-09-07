@@ -11,8 +11,15 @@
   </head>
   <body ng-controller='MainCtrl'>
 
-    <!-- <button ng-click="authenticate('facebook')">Sign in with Facebook</button>
-    <button ng-click="authenticate('twitter')">Sign in with Twitter</button> -->
+    <ul id='facebook' ng-repeat='moment in timeline'>
+      <li ng-if='moment.message && moment.story'>{{moment.story}}</li>
+      <li ng-if='moment.message'>{{moment.message}}</li>
+      <hr ng-if='moment.message'>
+    </ul>
+    <div id='instagram' ng-repeat='picture in pictures'>
+      <img ng-src="{{picture.images.standard_resolution.url}}">
+    </div>
+
     <!-- <button ng-click="authenticate('google')">Sign in with Google</button>
     <button ng-click="authenticate('github')">Sign in with GitHub</button>
     <button ng-click="authenticate('linkedin')">Sign in with LinkedIn</button>
@@ -22,12 +29,15 @@
     <button ng-click="authenticate('twitch')">Sign in with Twitch</button>
     <button ng-click="authenticate('bitbucket')">Sign in with Bitbucket</button>
     <button ng-click="authenticate('spotify')">Sign in with Spotify</button> -->
-    <ul ng-if="!isAuthenticated()">
-      <li><button ng-click="authenticate('instagram')">Sign in with Instagram</button></li>
-    </ul>
-    <ul ng-if="isAuthenticated()">
+    <div ng-if='!isAuthenticated()'>
+      <button ng-click="authenticate('facebook')">Sign in with Facebook</button>
+      <button ng-click="authenticate('instagram')">Sign in with Instagram</button>
+      <button ng-click="authenticate('twitter')">Sign in with Twitter</button>
+    </div>
+
+    <ul ng-if='isAuthenticated()'>
       <li><button ng-click="pullInstagram()">Get Instagram</button></li>
-      
+      <li><button ng-click="pullFacebook()">Get Facebook</button></li>
       <li><button ng-click="logout()" href="">Logout</button></li>
     </ul>
   </body>

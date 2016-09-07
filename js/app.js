@@ -12,7 +12,16 @@ angular.module('gathyr2', ['satellizer', 'ngRoute', 'ngMessages'])
     };
 
     $scope.pullInstagram = function() {
-      return $http.get('http://localhost:3000/api/feed')
+      return $http.get('http://localhost:3000/api/instagram/feed').then(function(response) {
+        $scope.pictures = (response.data)
+      })
+    };
+
+    $scope.pullFacebook = function() {
+      return $http.get('http://localhost:3000/api/facebook/feed').then(function(response) {
+        console.log(response.data)
+        $scope.timeline = (response.data)
+      })
     };
   })
   .config(function($authProvider) {
@@ -37,7 +46,7 @@ angular.module('gathyr2', ['satellizer', 'ngRoute', 'ngMessages'])
       authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
       redirectUri: window.location.origin + '/',
       requiredUrlParams: ['display', 'scope'],
-      scope: ['email'],
+      scope: ['email', 'user_posts'],
       scopeDelimiter: ',',
       display: 'popup',
       oauthType: '2.0',
@@ -59,7 +68,7 @@ angular.module('gathyr2', ['satellizer', 'ngRoute', 'ngMessages'])
 
     // Twitter
     $authProvider.twitter({
-      clientId: 'm9OtVTVnNXBNVJnkPNVnVjZBq',
+      clientId: 'HxYPEZHZ0NHd2ugkTv3673Q1N',
       url: 'http://localhost:3000/auth/twitter',
       authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
       redirectUri: window.location.origin,
