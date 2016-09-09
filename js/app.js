@@ -12,19 +12,19 @@ angular.module('gathyr2', ['satellizer'])
     };
 
     $scope.pullFacebook = function() {
-      return $http.get('http://localhost:3000/api/facebook/feed').then(function(response) {
+      return $http.get('https://gathyr2.herokuapp.com/api/facebook/feed').then(function(response) {
         $scope.timeline = response.data
       })
     };
 
     $scope.pullInstagram = function() {
-      return $http.get('http://localhost:3000/api/instagram/feed').then(function(response) {
+      return $http.get('https://gathyr2.herokuapp.com/api/instagram/feed').then(function(response) {
         $scope.pictures = response.data
       })
     };
 
     $scope.pullTwitter = function() {
-      return $http.get('http://localhost:3000/api/twitter/feed').then(function(response) {
+      return $http.get('https://gathyr2.herokuapp.com/api/twitter/feed').then(function(response) {
         $scope.tweets = response.data
       })
     };
@@ -48,7 +48,7 @@ angular.module('gathyr2', ['satellizer'])
     $authProvider.facebook({
       clientId: '1610510365908520',
       name: 'facebook',
-      url: 'http://localhost:3000/auth/facebook',
+      url: 'https://gathyr2.herokuapp.com/auth/facebook',
       authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
       redirectUri: window.location.origin + '/',
       requiredUrlParams: ['display', 'scope'],
@@ -63,7 +63,7 @@ angular.module('gathyr2', ['satellizer'])
     $authProvider.instagram({
       clientId: '8275245eeb284ad2a806eaccde1ee1d6',
       name: 'instagram',
-      url: 'http://localhost:3000/auth/instagram',
+      url: 'https://gathyr2.herokuapp.com/auth/instagram',
       authorizationEndpoint: 'https://api.instagram.com/oauth/authorize',
       redirectUri: window.location.origin,
       requiredUrlParams: ['scope'],
@@ -76,7 +76,7 @@ angular.module('gathyr2', ['satellizer'])
     $authProvider.twitter({
       clientId: 'HxYPEZHZ0NHd2ugkTv3673Q1N',
       clientSecret: 'kYI41jMq3hQ2uN5FSHOAIsrZRNSCFaJgcC4ir8fcU2Ixovp4FZ',
-      url: 'http://localhost:3000/auth/twitter',
+      url: 'https://gathyr2.herokuapp.com/auth/twitter',
       authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
       redirectUri: window.location.origin,
       oauthType: '1.0',
@@ -85,7 +85,7 @@ angular.module('gathyr2', ['satellizer'])
 
     // // Google
     // $authProvider.google({
-    //   url: 'http://localhost:3000/auth/google',
+    //   url: 'https://gathyr2.herokuapp.com/auth/google',
     //   authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
     //   redirectUri: window.location.origin,
     //   requiredUrlParams: ['scope'],
@@ -100,7 +100,7 @@ angular.module('gathyr2', ['satellizer'])
     //
     // // GitHub
     // $authProvider.github({
-    //   url: 'http://localhost:3000/auth/github',
+    //   url: 'https://gathyr2.herokuapp.com/auth/github',
     //   authorizationEndpoint: 'https://github.com/login/oauth/authorize',
     //   redirectUri: window.location.origin,
     //   optionalUrlParams: ['scope'],
@@ -112,7 +112,7 @@ angular.module('gathyr2', ['satellizer'])
     //
     // // LinkedIn
     // $authProvider.linkedin({
-    //   url: 'http://localhost:3000/auth/linkedin',
+    //   url: 'https://gathyr2.herokuapp.com/auth/linkedin',
     //   authorizationEndpoint: 'https://www.linkedin.com/uas/oauth2/authorization',
     //   redirectUri: window.location.origin,
     //   requiredUrlParams: ['state'],
@@ -125,7 +125,7 @@ angular.module('gathyr2', ['satellizer'])
     //
     // // Twitch
     // $authProvider.twitch({
-    //   url: 'http://localhost:3000/auth/twitch',
+    //   url: 'https://gathyr2.herokuapp.com/auth/twitch',
     //   authorizationEndpoint: 'https://api.twitch.tv/kraken/oauth2/authorize',
     //   redirectUri: window.location.origin,
     //   requiredUrlParams: ['scope'],
@@ -138,7 +138,7 @@ angular.module('gathyr2', ['satellizer'])
     //
     // // Windows Live
     // $authProvider.live({
-    //   url: 'http://localhost:3000/auth/live',
+    //   url: 'https://gathyr2.herokuapp.com/auth/live',
     //   authorizationEndpoint: 'https://login.live.com/oauth20_authorize.srf',
     //   redirectUri: window.location.origin,
     //   requiredUrlParams: ['display', 'scope'],
@@ -151,7 +151,7 @@ angular.module('gathyr2', ['satellizer'])
     //
     // // Yahoo
     // $authProvider.yahoo({
-    //   url: 'http://localhost:3000/auth/yahoo',
+    //   url: 'https://gathyr2.herokuapp.com/auth/yahoo',
     //   authorizationEndpoint: 'https://api.login.yahoo.com/oauth2/request_auth',
     //   redirectUri: window.location.origin,
     //   scope: [],
@@ -162,7 +162,7 @@ angular.module('gathyr2', ['satellizer'])
     //
     // // Bitbucket
     // $authProvider.bitbucket({
-    //   url: 'http://localhost:3000/auth/bitbucket',
+    //   url: 'https://gathyr2.herokuapp.com/auth/bitbucket',
     //   authorizationEndpoint: 'https://bitbucket.org/site/oauth2/authorize',
     //   redirectUri: window.location.origin + '/',
     //   optionalUrlParams: ['scope'],
@@ -174,7 +174,7 @@ angular.module('gathyr2', ['satellizer'])
     //
     // // Spotify
     // $authProvider.spotify({
-    //   url: 'http://localhost:3000/auth/spotify',
+    //   url: 'https://gathyr2.herokuapp.com/auth/spotify',
     //   authorizationEndpoint: 'https://accounts.spotify.com/authorize',
     //   redirectUri: window.location.origin,
     //   optionalUrlParams: ['state'],
