@@ -1,4 +1,4 @@
-angular.module('gathyr2', ['satellizer', 'ngRoute', 'ngMessages'])
+angular.module('gathyr2', ['satellizer'])
   .controller('MainCtrl', function($scope, $auth, $window, $http) {
     $scope.authenticate = function(provider) {
       $auth.authenticate(provider);
@@ -11,18 +11,24 @@ angular.module('gathyr2', ['satellizer', 'ngRoute', 'ngMessages'])
       delete $window.localStorage.currentUser;
     };
 
-    $scope.pullInstagram = function() {
-      return $http.get('http://localhost:3000/api/instagram/feed').then(function(response) {
-        $scope.pictures = (response.data)
+    $scope.pullFacebook = function() {
+      return $http.get('http://localhost:3000/api/facebook/feed').then(function(response) {
+        $scope.timeline = response.data
       })
     };
 
-    $scope.pullFacebook = function() {
-      return $http.get('http://localhost:3000/api/facebook/feed').then(function(response) {
-        console.log(response.data)
-        $scope.timeline = (response.data)
+    $scope.pullInstagram = function() {
+      return $http.get('http://localhost:3000/api/instagram/feed').then(function(response) {
+        $scope.pictures = response.data
       })
     };
+
+    $scope.pullTwitter = function() {
+      return $http.get('http://localhost:3000/api/twitter/feed').then(function(response) {
+        $scope.tweets = response.data
+      })
+    };
+
   })
   .config(function($authProvider) {
     $authProvider.httpInterceptor = function() { return true; },
@@ -69,13 +75,14 @@ angular.module('gathyr2', ['satellizer', 'ngRoute', 'ngMessages'])
     // Twitter
     $authProvider.twitter({
       clientId: 'HxYPEZHZ0NHd2ugkTv3673Q1N',
+      clientSecret: 'kYI41jMq3hQ2uN5FSHOAIsrZRNSCFaJgcC4ir8fcU2Ixovp4FZ',
       url: 'http://localhost:3000/auth/twitter',
       authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
       redirectUri: window.location.origin,
       oauthType: '1.0',
       popupOptions: { width: 495, height: 645 }
     });
-    //
+
     // // Google
     // $authProvider.google({
     //   url: 'http://localhost:3000/auth/google',
