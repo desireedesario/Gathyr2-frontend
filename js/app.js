@@ -1,7 +1,7 @@
 angular.module('gathyr2', ['satellizer'])
   .controller('MainCtrl', function($scope, $auth, $window, $http) {
     $scope.authenticate = function(provider) {
-      $auth.authenticate(provider);
+      $auth.authenticate(provider)
     };
     $scope.isAuthenticated = function() {
       return $auth.isAuthenticated();
@@ -11,20 +11,31 @@ angular.module('gathyr2', ['satellizer'])
       delete $window.localStorage.currentUser;
     };
 
+    $scope.link = function(provider) {
+      $auth.link(provider)
+        .then(function(response) {
+          // You have successfully linked an account.
+        })
+        .catch(function(response) {
+          // Handle errors here.
+        });
+    };
+
     $scope.pullFacebook = function() {
-      return $http.get('https://gathyr2.herokuapp.com/api/facebook/feed').then(function(response) {
+      //                        gathyr2.herokuapp.com
+      return $http.get('http://gathyr2.herokuapp.com/api/facebook/feed').then(function(response) {
         $scope.timeline = response.data
       })
     };
 
     $scope.pullInstagram = function() {
-      return $http.get('https://gathyr2.herokuapp.com/api/instagram/feed').then(function(response) {
+      return $http.get('http://gathyr2.herokuapp.com/api/instagram/feed').then(function(response) {
         $scope.pictures = response.data
       })
     };
 
     $scope.pullTwitter = function() {
-      return $http.get('https://gathyr2.herokuapp.com/api/twitter/feed').then(function(response) {
+      return $http.get('http://gathyr2.herokuapp.com/api/twitter/feed').then(function(response) {
         $scope.tweets = response.data
       })
     };
@@ -48,7 +59,7 @@ angular.module('gathyr2', ['satellizer'])
     $authProvider.facebook({
       clientId: '1610510365908520',
       name: 'facebook',
-      url: 'https://gathyr2.herokuapp.com/auth/facebook',
+      url: 'http://gathyr2.herokuapp.com/auth/facebook',
       authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
       redirectUri: window.location.origin + '/',
       requiredUrlParams: ['display', 'scope'],
@@ -63,7 +74,7 @@ angular.module('gathyr2', ['satellizer'])
     $authProvider.instagram({
       clientId: '8275245eeb284ad2a806eaccde1ee1d6',
       name: 'instagram',
-      url: 'https://gathyr2.herokuapp.com/auth/instagram',
+      url: 'http://gathyr2.herokuapp.com/auth/instagram',
       authorizationEndpoint: 'https://api.instagram.com/oauth/authorize',
       redirectUri: window.location.origin,
       requiredUrlParams: ['scope'],
@@ -76,7 +87,7 @@ angular.module('gathyr2', ['satellizer'])
     $authProvider.twitter({
       clientId: 'HxYPEZHZ0NHd2ugkTv3673Q1N',
       clientSecret: 'kYI41jMq3hQ2uN5FSHOAIsrZRNSCFaJgcC4ir8fcU2Ixovp4FZ',
-      url: 'https://gathyr2.herokuapp.com/auth/twitter',
+      url: 'http://gathyr2.herokuapp.com/auth/twitter',
       authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
       redirectUri: window.location.origin,
       oauthType: '1.0',
