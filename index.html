@@ -81,7 +81,7 @@
       <ul ng-if='isAuthenticated()'>
         <li><button class="logo" ng-click="pullFacebook()">Get Facebook</button></li>
       </ul>
-      <ul ng-if='moment.message' ng-repeat='moment in timeline'>
+      <ul ng-if='moment.message' ng-repeat='moment in timeline' class="pre-scrollable">
         <li ng-if='moment.message && moment.story'>{{moment.story}}</li>
         <li ng-if='moment.message'>{{moment.message}}</li>
       </ul>
@@ -93,7 +93,7 @@
       <ul ng-if='isAuthenticated()'>
         <li><button class="logo" ng-click="pullInstagram()">Get Instagram</button></li>
       </ul>
-      <div ng-repeat='picture in pictures'>
+      <div ng-repeat='picture in pictures' class="pre-scrollable">
         <img ng-src="{{picture.images.standard_resolution.url}}">
       </div>
     </div>
@@ -105,7 +105,7 @@
       </ul>
       <!-- <h2>Twitter</h2> -->
       <img class="logo" src="images/twitter.png">
-      <div ng-repeat='tweet in tweets'>
+      <div ng-repeat='tweet in tweets' class="pre-scrollable">
           <p>{{tweet.user.screen_name}}</p>
           <p>{{tweet.text.split(' https://t.co/')[0]}}</p>
         <hr>
