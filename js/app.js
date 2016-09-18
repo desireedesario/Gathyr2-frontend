@@ -12,19 +12,19 @@ angular.module('gathyr2', ['satellizer'])
     };
 
     $scope.pullFacebook = function() {
-      return $http.get('http://localhost:3000/api/facebook/feed').then(function(response) {
+      return $http.get('https://gathyr2.herokuapp.com/api/facebook/feed').then(function(response) {
         $scope.timeline = response.data
       })
     };
 
     $scope.pullInstagram = function() {
-      return $http.get('http://localhost:3000/api/instagram/feed').then(function(response) {
+      return $http.get('https://gathyr2.herokuapp.com/api/instagram/feed').then(function(response) {
         $scope.pictures = response.data
       })
     };
 
     $scope.pullTwitter = function() {
-      return $http.get('http://localhost:3000/api/twitter/feed').then(function(response) {
+      return $http.get('https://gathyr2.herokuapp.com/api/twitter/feed').then(function(response) {
         $scope.tweets = response.data
       })
     };
@@ -48,7 +48,7 @@ angular.module('gathyr2', ['satellizer'])
     $authProvider.facebook({
       clientId: '1610510365908520',
       name: 'facebook',
-      url: 'http://localhost:3000/auth/facebook',
+      url: 'https://gathyr2.herokuapp.com/auth/facebook',
       authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
       redirectUri: window.location.origin + '/',
       requiredUrlParams: ['display', 'scope'],
@@ -63,7 +63,7 @@ angular.module('gathyr2', ['satellizer'])
     $authProvider.instagram({
       clientId: '8275245eeb284ad2a806eaccde1ee1d6',
       name: 'instagram',
-      url: 'http://localhost:3000/auth/instagram',
+      url: 'https://gathyr2.herokuapp.com/auth/instagram',
       authorizationEndpoint: 'https://api.instagram.com/oauth/authorize',
       redirectUri: window.location.origin,
       requiredUrlParams: ['scope'],
@@ -76,7 +76,7 @@ angular.module('gathyr2', ['satellizer'])
     $authProvider.twitter({
       clientId: 'HxYPEZHZ0NHd2ugkTv3673Q1N',
       clientSecret: 'kYI41jMq3hQ2uN5FSHOAIsrZRNSCFaJgcC4ir8fcU2Ixovp4FZ',
-      url: 'http://localhost:3000/auth/twitter',
+      url: 'https://gathyr2.herokuapp.com/auth/twitter',
       authorizationEndpoint: 'https://api.twitter.com/oauth/authenticate',
       redirectUri: window.location.origin,
       oauthType: '1.0',

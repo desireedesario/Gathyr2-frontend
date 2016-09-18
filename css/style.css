@@ -1,18 +1,28 @@
 body {
-  margin-top:5%;
+
   background-image: url("../images/background.jpg"); background-repeat: no-repeat;
 	background-attachment: fixed;
   background-size: cover;
 }
 
 .logo {
-  padding: 3%;
+  /*padding: 3%;*/
+  display:block;
+  margin:auto;
+}
+
+.getContent button {
   display:block;
   margin:auto;
 }
 
 .clearfix {
   overflow: auto;
+}
+
+.content {
+  margin-top:10%;
+  height:4000px;
 }
 
 li {
@@ -37,6 +47,10 @@ li {
 #facebook img {
   max-width: 100%;
   height: auto;
+}
+
+#facebook li {
+  font-size: 14px;
 }
 
 #instagram {
