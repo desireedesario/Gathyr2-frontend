@@ -1,29 +1,43 @@
-h2 {
-  text-align: center;
+.logo {
   padding: 3%;
+  display:block;
+  margin:auto;
 }
 
-#facebook {
-  float: left;
-  width: 25%;
-  margin: 3%;
-  border: 2px solid blue;
-  border-radius: 25px;
-  font-size: 19px;
-  font-family: Arial, Helvetica, sans-serif;
+.clearfix {
+  overflow: auto;
 }
 
 li {
   list-style-type: none;
+}
 
+#header {
+  text-align: center;
+  padding: 0 10%;
+}
+
+#facebook {
+  float: left;
+  width: 27%;
+  margin: 3%;
+  /*border: 2px solid blue;*/
+  /*border-radius: 25px;*/
+  font-size: 19px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#facebook img {
+  max-width: 100%;
+  height: auto;
 }
 
 #instagram {
   float: left;
-  width: 25%;
+  width: 30%;
   margin: 3%;
-  border: 2px solid purple;
-  border-radius: 25px;
+  /*border: 2px solid purple;*/
+  /*border-radius: 25px;*/
   font-size: 19px;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -37,8 +51,13 @@ li {
   float: left;
   width:25%;
   margin: 3%;
-  border: 2px solid teal;
-  border-radius: 25px;
+  /*border: 2px solid teal;*/
+  /*border-radius: 25px;*/
   font-size: 19px;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+#twitter img {
+  max-width: 100%;
+  height: auto;
 }

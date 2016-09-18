@@ -3,17 +3,59 @@
   <head>
     <meta charset='utf-8'>
     <title>Gathyr2</title>
+
+    <!-- CSS stylessheets -->
     <link rel="stylesheet" href="./css/style.css" media="screen" title="no title">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- JS script tags -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js'></script>
     <script src='https://cdn.jsdelivr.net/satellizer/0.15.5/satellizer.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js'></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
     <script src='./js/app.js'></script>
-  </head>
-  <body ng-controller='MainCtrl'>
 
-    <button ng-if='!isAuthenticated()' ng-click="authenticate('facebook')">Sign in with Facebook</button>
+  </head>
+
+<body ng-controller='MainCtrl'>
+  <nav class="navbar navbar-static-top navbar-inverse" style="border-bottom:1px solid #FC9952">
+    <div class="container-fluid">
+      <center>
+        <h1 style='color:#FC9952;font-family:"Raleway",Arial,sans-serif;'>
+          GATHYR 2
+        </h1>
+      </center>
+    </div>
+  </nav>
+  <div class="container" style='font-family:"Raleway",Arial,sans-serif;'>
+  <div id="header">
+  <img src="images/gathyr2Logo.png" style="width:30%">
+  <h4>
+    Gathyr2 infuses all of your events, contacts, and messaging. It is your one stop hub for all social media.<br><br>
+
+    Gathyr2 is a social media collection app that combines posts from Facebook, Instagram, and Twitter on one website. You now have the ability to post to several social media sites without tapping from app to app.<br><br>
+
+    The driven principle behind making Gathyr is to finally have the opportunity to capture an event, thought, or experience without having to go in and out of several apps at once. Gathyr your moments on multiple sites with a single touch.
+  </h4>
+  </div>
+
+  <div class="btn-group btn-group-justified" role="group" aria-label="GATHYR2">
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-lg btn-primary" ng-if='!isAuthenticated()' ng-click="authenticate('facebook')">Sign in with Facebook</button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-lg btn-warning" ng-if='!isAuthenticated()' ng-click="authenticate('instagram')">Sign in with Instagram</button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-lg btn-info" ng-if='!isAuthenticated()' ng-click="authenticate('twitter')">Sign in with Twitter</button>
+  </div>
+</div>
+
+    <!-- <button ng-if='!isAuthenticated()' ng-click="authenticate('facebook')">Sign in with Facebook</button>
     <button ng-if='!isAuthenticated()' ng-click="authenticate('instagram')">Sign in with Instagram</button>
-    <button ng-if='!isAuthenticated()' ng-click="authenticate('twitter')">Sign in with Twitter</button>
+    <button ng-if='!isAuthenticated()' ng-click="authenticate('twitter')">Sign in with Twitter</button> -->
     <!-- <button ng-click="authenticate('google')">Sign in with Google</button>
     <button ng-click="authenticate('github')">Sign in with GitHub</button>
     <button ng-click="authenticate('linkedin')">Sign in with LinkedIn</button>
@@ -23,37 +65,52 @@
     <button ng-click="authenticate('twitch')">Sign in with Twitch</button>
     <button ng-click="authenticate('bitbucket')">Sign in with Bitbucket</button>
     <button ng-click="authenticate('spotify')">Sign in with Spotify</button> -->
+    <div class="clearfix">
+      <!-- <ul ng-if='isAuthenticated()'>
+        <li><button ng-click="pullFacebook()">Get Facebook</button></li>
+        <li><button ng-click="pullInstagram()">Get Instagram</button></li>
+        <li><button ng-click="pullTwitter()">Get Twitter</button></li>
+        <li><button ng-click="logout()" href="">Logout</button></li>
+      </ul> -->
+    </div>
 
-    <ul ng-if='isAuthenticated()'>
-      <li><button ng-click="pullFacebook()">Get Facebook</button></li>
-      <li><button ng-click="pullInstagram()">Get Instagram</button></li>
-      <li><button ng-click="pullTwitter()">Get Twitter</button></li>
-      <li><button ng-click="logout()" href="">Logout</button></li>
-    </ul>
+    <div id='facebook'>
+      <!-- <h2>Facebook</h2> -->
+      <img class="logo" src="images/facebook.png">
+      <!-- this only shows when logged in -->
+      <ul ng-if='isAuthenticated()'>
+        <li><button class="logo" ng-click="pullFacebook()">Get Facebook</button></li>
+      </ul>
+      <ul ng-if='moment.message' ng-repeat='moment in timeline'>
+        <li ng-if='moment.message && moment.story'>{{moment.story}}</li>
+        <li ng-if='moment.message'>{{moment.message}}</li>
+      </ul>
+    </div>
 
-      <div id='facebook'>
-        <h2>Facebook</h2>
-        <ul ng-if='moment.message' ng-repeat='moment in timeline'>
-          <li ng-if='moment.message && moment.story'>{{moment.story}}</li>
-          <li ng-if='moment.message'>{{moment.message}}</li>
-        </ul>
+    <div id='instagram'>
+      <img class="logo" src="images/instagram.png">
+      <!-- this only shows when logged in -->
+      <ul ng-if='isAuthenticated()'>
+        <li><button class="logo" ng-click="pullInstagram()">Get Instagram</button></li>
+      </ul>
+      <div ng-repeat='picture in pictures'>
+        <img ng-src="{{picture.images.standard_resolution.url}}">
       </div>
+    </div>
 
-      <div id='instagram'>
-        <h2>Instagram</h2>
-        <div ng-repeat='picture in pictures'>
-          <img ng-src="{{picture.images.standard_resolution.url}}">
-        </div>
+    <div id='twitter'>
+      <!-- this only shows when logged in -->
+      <ul ng-if='isAuthenticated()'>
+        <li><button class="logo" ng-click="pullTwitter()">Get Twitter</button></li>
+      </ul>
+      <!-- <h2>Twitter</h2> -->
+      <img class="logo" src="images/twitter.png">
+      <div ng-repeat='tweet in tweets'>
+          <p>{{tweet.user.screen_name}}</p>
+          <p>{{tweet.text.split(' https://t.co/')[0]}}</p>
+        <hr>
       </div>
-
-      <div id='twitter'>
-        <h2>Twitter</h2>
-        <div ng-repeat='tweet in tweets'>
-            <p>{{tweet.user.screen_name}}</p>
-            <p>{{tweet.text.split(' https://t.co/')[0]}}</p>
-          <hr>
-        </div>
-      </div>
-
-  </body>
+    </div>
+  </div>
+</body>
 </html>
